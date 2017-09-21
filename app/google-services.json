@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "188402334867",
+    "firebase_url": "https://fir-forttt.firebaseio.com",
+    "project_id": "fir-forttt",
+    "storage_bucket": "fir-forttt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188402334867:android:9b1458858e197293",
+        "android_client_info": {
+          "package_name": "com.example.shinogekai.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188402334867-i49fgao8p0ce27jdcj0v586o1t4hqna7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shinogekai.myapplication",
+            "certificate_hash": "54bd02c6b590229e0caa6f4a0fcd595083cceb7a"
+          }
+        },
+        {
+          "client_id": "188402334867-cr84g97phe3duorev7tla1lpotnpsi0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc0NlwAWO2Ixapr_5xXc-uk5ntmznfv6I"
+        },
+        {
+          "current_key": "AIzaSyCV2E0Tuwu3ADHV-pNsPwG_945t7lJKAQ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188402334867-cr84g97phe3duorev7tla1lpotnpsi0l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
