@@ -254,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
                     String dfTimeStart = DateFormat.getTimeInstance().format(timeStartedEngine);
                     String dfTimeFinish = DateFormat.getTimeInstance().format(timeFinishedEngine);
 
+                    //TODO mozda ubaciti i datum u driverData da bi se moglo bolje sortirati
                     driverData.setTotalDrivingTime(total);
                     Log.d(TAG, "totalDrivingTime: " + total);
                     driverData.setUserId(userID);
