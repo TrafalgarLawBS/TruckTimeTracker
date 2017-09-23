@@ -11,11 +11,24 @@
         android:scaleType="centerCrop"
         android:src="@drawable/truck1" />
 
+    <!--TODO change picture-->
+
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"></com.google.android.gms.common.SignInButton>
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="24dp"></com.google.android.gms.common.SignInButton>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

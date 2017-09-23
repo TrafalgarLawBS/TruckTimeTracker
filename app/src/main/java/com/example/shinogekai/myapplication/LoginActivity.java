@@ -1,13 +1,16 @@
 package com.example.shinogekai.myapplication;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.shinogekai.myapplication.model.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -20,6 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
@@ -33,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private long lastClick;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +50,23 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (firebaseAuth.getCurrentUser() != null) {
 
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    FirebaseUser fireBaseUser = firebaseAuth.getCurrentUser();
+
+                    User user = new User();
+                    user.setName(fireBaseUser.getDisplayName());
+                    user.setEmail(fireBaseUser.getEmail());
+                    user.setImageURL(fireBaseUser.getPhotoUrl().toString());
+                    user.setuID(fireBaseUser.getUid());
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("user_name", user.getName());
+                    intent.putExtra("user_email", user.getEmail());
+                    intent.putExtra("user_image", user.getImageURL());
+                    intent.putExtra("user_uid", user.getuID());
+
+                    startActivity(intent);
+
+                    //startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
                 }
 
@@ -76,17 +97,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                signIn();
+                new MySignInTask().execute();
 
             }
         });
 
     }
 
-    private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+//    private void signIn() {
+//
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -101,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account);
             } else {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(LoginActivity.this, "Something went wrong. :( Try again!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Something went wrong. :( Try again! (Check WiFI connection!)", Toast.LENGTH_SHORT).show();
                 // ...
             }
         }
@@ -162,6 +182,32 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(LoginActivity.this, "Press back again to exit", Toast.LENGTH_SHORT).show();
             lastClick = now;
+        }
+    }
+
+    public class MySignInTask extends AsyncTask<Void, Void, Void> {
+
+        ProgressBar progressBar;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar = (ProgressBar) findViewById(R.id.progressBar2);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Log.d(TAG, "doInBackground: Usao u metodu");
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressBar.setVisibility(View.GONE);
         }
     }
 
