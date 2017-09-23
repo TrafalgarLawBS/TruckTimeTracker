@@ -9,9 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/truck1" />
-
-    <!--TODO change picture-->
+        android:src="@drawable/road1" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_google"

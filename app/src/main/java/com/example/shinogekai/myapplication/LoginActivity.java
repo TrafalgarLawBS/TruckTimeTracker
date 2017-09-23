@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -86,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-                        Toast.makeText(LoginActivity.this, "Error was made today.", Toast.LENGTH_LONG).show();
+                        Toasty.error(LoginActivity.this, "GoogleApiClient.Builder not working properly", Toast.LENGTH_LONG, true).show();
 
                     }
                 })
@@ -121,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account);
             } else {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(LoginActivity.this, "Something went wrong. :( Try again! (Check WiFI connection!)", Toast.LENGTH_SHORT).show();
+                Toasty.error(LoginActivity.this, "Something went wrong. :( Try again! (Check WiFI connection!)", Toast.LENGTH_SHORT, true).show();
                 // ...
             }
         }
@@ -143,8 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toasty.error(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT, true).show();
                             //updateUI(null);
                         }
 
@@ -180,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
             System.exit(0);
         } else {
-            Toast.makeText(LoginActivity.this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+            Toasty.info(LoginActivity.this, "Press back again to exit", Toast.LENGTH_SHORT, true).show();
             lastClick = now;
         }
     }

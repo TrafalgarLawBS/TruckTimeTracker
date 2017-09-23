@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context="com.example.shinogekai.myapplication.AboutActivity">
 
@@ -14,12 +14,22 @@
     <!--android:scaleType="centerCrop"-->
     <!--android:src="@drawable/truck1" />-->
 
+    <TextView
+        android:id="@+id/tv_about_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:text="About"
+        android:textColor="@color/textColorLight"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/tv_about_tv"
         android:layout_margin="8dp"
         android:src="@drawable/bs_friend" />
 
@@ -27,13 +37,11 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_below="@id/tv_about_tv"
+        android:layout_margin="8dp"
         android:layout_toRightOf="@id/imageView"
-        android:background="@color/backgroundTextColor"
-        android:padding="8dp"
         android:text="@string/about"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/textColorLight" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -43,7 +51,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:src="@drawable/ic_email_white_48dp" />
 
 </RelativeLayout>
